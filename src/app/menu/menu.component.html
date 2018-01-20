@@ -17,7 +17,7 @@
         </md-grid-list>
   </div>
 
-  <div fxFlex>
+  <div fxFlex *ngIf="selectedDish">
     <dishdetail [dish]="selectedDish"></dishdetail>
   </div>
 </div>
