@@ -21,10 +21,10 @@ export class ContactComponent implements OnInit {
 
   createForm() {
     this.feedbackForm = this.fb.group({
-      firstname: '',
-      lastname: '',
-      telnum: 0,
-      email: '',
+      firstname: ['', Validators.required ],
+      lastname: ['', Validators.required ],
+      telnum: ['', Validators.required ],
+      email: ['', Validators.required ],
       agree: false,
       contacttype: 'None',
       message: ''
@@ -35,8 +35,16 @@ export class ContactComponent implements OnInit {
     // Both feedback and feedbackForm have the same structure in this case, however
     // if that isn't the case you must explicitly map each valid property between the two
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedbackForm);
-    this.feedbackForm.reset();
+    console.log(this.feedback);
+    this.feedbackForm.reset({
+      firstname: '',
+      lastname: '',
+      telnum: '',
+      email: '',
+      agree: false,
+      contacttype: 'None',
+      message: ''
+    });
   }
 
 }
