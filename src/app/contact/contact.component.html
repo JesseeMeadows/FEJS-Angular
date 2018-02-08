@@ -42,38 +42,30 @@
 
         <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
           <p>
-            <md-input-container class="half-width"
-             dividerColor="{{(formErrors.firstname) ? 'warn' : 'primary'}}">
+            <md-input-container class="half-width" dividerColor="{{(formErrors.firstname) ? 'warn' : 'primary'}}">
               <input mdInput formControlName="firstname" placeholder="First Name" type="text" required>
               <md-hint>
-                <span [hidden]="!(formErrors.firstname)">
-                  {{formErrors.firstname}}</span>
+                <span [hidden]="!(formErrors.firstname)"> {{formErrors.firstname}}</span>
               </md-hint>
             </md-input-container>
-            <md-input-container class="half-width"
-             dividerColor="{{(formErrors.lastname) ? 'warn' : 'primary'}}">
+            <md-input-container class="half-width" dividerColor="{{(formErrors.lastname) ? 'warn' : 'primary'}}">
               <input mdInput formControlName="lastname" placeholder="Last Name" type="text" required>
               <md-hint>
-                <span [hidden]="!(formErrors.lastname)">
-                  {{formErrors.lastname}}</span>
+                <span [hidden]="!(formErrors.lastname)"> {{formErrors.lastname}}</span>
               </md-hint>
             </md-input-container>
           </p>
           <p>
-            <md-input-container class="half-width"
-             dividerColor="{{(formErrors.telnum) ? 'warn' : 'primary'}}">
+            <md-input-container class="half-width" dividerColor="{{(formErrors.telnum) ? 'warn' : 'primary'}}">
               <input mdInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required>
               <md-hint>
-                <span [hidden]="!(formErrors.telnum)">
-                  {{formErrors.telnum}}</span>
+                <span [hidden]="!(formErrors.telnum)"> {{formErrors.telnum}}</span>
               </md-hint>
             </md-input-container>
-            <md-input-container class="half-width"
-             dividerColor="{{(formErrors.email) ? 'warn' : 'primary'}}">
+            <md-input-container class="half-width" dividerColor="{{(formErrors.email) ? 'warn' : 'primary'}}">
               <input mdInput formControlName="email" placeholder="Email" type="email" email required>
               <md-hint>
-                <span [hidden]="!(formErrors.email)">
-                  {{formErrors.email}}</span>
+                <span [hidden]="!(formErrors.email)">{{formErrors.email}}</span>
               </md-hint>
             </md-input-container>
           </p>
@@ -88,7 +80,7 @@
               </md-option>
             </md-select>
             </td>
-            </table>
+          </table>
           <p>
             <md-input-container class="full-width">
               <textarea mdInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>

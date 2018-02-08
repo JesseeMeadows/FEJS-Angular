@@ -46,7 +46,7 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
   }
 
-  createForm() {
+  createForm(): void {
     this.feedbackForm = this.fb.group({
       firstname: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       lastname: ['', [ Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -60,7 +60,7 @@ export class ContactComponent implements OnInit {
     this.feedbackForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
 
-  this.onValueChanged(); // (re)set form validation messages
+    this.onValueChanged(); // (re)set form validation messages
 
   }
 
