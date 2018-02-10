@@ -15,6 +15,7 @@ import { baseURL } from '../shared/baseurl';
 export class MenuComponent implements OnInit {
   
   dishes: Dish[];
+  errMess: string;
   
   constructor(private dishService: DishService,
     @Inject('BaseURL') private BaseURL) { }
@@ -22,7 +23,9 @@ export class MenuComponent implements OnInit {
   // This method is executed whenever the implementing component is 
   // instantiated
   ngOnInit() {
-    this.dishService.getDishes().subscribe(dishes => this.dishes = dishes);
+    this.dishService.getDishes()
+      .subscribe(dishes => this.dishes = dishes,
+        errmess => this.errMess = <any>errmess);
   }
 
 }
