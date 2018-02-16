@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut, expand } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
 
 @Component({
   selector: 'app-contact',
@@ -12,13 +13,16 @@ import { flyInOut } from '../animations/app.animation';
     'style': 'display: block;'
     },
     animations: [
-      flyInOut()
+      flyInOut(),
+      expand()
     ]
 })
 export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  formStatus = 'new';
+  submission: Feedback = { firstname: '', lastname: '', telnum: 0, email: '', agree: false, contacttype: 'None', message: ''};
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -47,7 +51,8 @@ export class ContactComponent implements OnInit {
     }
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private feedbackService: FeedbackService) {
     this.createForm();
    }
 
@@ -92,7 +97,10 @@ export class ContactComponent implements OnInit {
     // Both feedback and feedbackForm have the same structure in this case, however
     // if that isn't the case you must explicitly map each valid property between the two
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
+    this.formStatus = 'processing';
+    this.feedbackService.submitFeedback(this.feedback)
+      .subscribe(submission => {this.submission = submission; this.formStatus='show'});
+    setTimeout(() => this.formStatus='new', 5000);
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -103,5 +111,7 @@ export class ContactComponent implements OnInit {
       message: ''
     });
   }
+
+
 
 }
